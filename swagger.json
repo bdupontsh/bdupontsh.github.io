@@ -1,0 +1,514 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "description": "Description for Talent Pools API",
+    "version": "1.0.0",
+    "title": "Talent Pools"
+  },
+  "servers": [
+    {
+      "url": "https://8F2034561D464C589E0D9AD11C465316.mobile.ocp.oraclecloud.com/mobile/custom/TalentPools"
+    }
+  ],
+  "paths": {
+    "/jobs": {
+      "get": {
+        "tags": [
+          "jobs"
+        ],
+        "summary": "Return a list of jobs",
+        "operationId": "getJobs",
+        "parameters": [
+          {
+            "name": "oracle-mobile-execute-etag",
+            "in": "header",
+            "schema": {
+              "type": "integer"
+            },
+            "required": false
+          },
+          {
+            "name": "oracle-mobile-api-version",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            },
+            "required": false
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Jobs"
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/UnauthorizedError"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFoundError"
+          }
+        }
+      }
+    },
+    "/talentpools": {
+      "get": {
+        "tags": [
+          "talentpools"
+        ],
+        "summary": "Return an object of TalentPools",
+        "operationId": "getTalentPools",
+        "parameters": [
+          {
+            "name": "oracle-mobile-execute-etag",
+            "in": "header",
+            "schema": {
+              "type": "integer"
+            },
+            "required": false
+          },
+          {
+            "name": "oracle-mobile-api-version",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            },
+            "required": false
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TalentPools"
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/UnauthorizedError"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFoundError"
+          }
+        }
+      }
+    },
+    "/talentpools/members": {
+      "get": {
+        "tags": [
+          "talentpools"
+        ],
+        "summary": "Return TalentPools Members",
+        "operationId": "getMembers",
+        "parameters": [
+          {
+            "name": "oracle-mobile-execute-etag",
+            "in": "header",
+            "schema": {
+              "type": "integer"
+            },
+            "required": false
+          },
+          {
+            "name": "oracle-mobile-api-version",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            },
+            "required": false
+          },
+          {
+            "name": "pool_ids",
+            "in": "query",
+            "description": "The pool member id from which you want the members.",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TalentPools"
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/UnauthorizedError"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFoundError"
+          }
+        }
+      }
+    },
+    "/talentpools/talentpoolswithmembers": {
+      "get": {
+        "tags": [
+          "talentpools"
+        ],
+        "summary": "Return TalentPools with Members",
+        "operationId": "getTalentPoolsWithMembers",
+        "parameters": [
+          {
+            "name": "oracle-mobile-execute-etag",
+            "in": "header",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true
+          },
+          {
+            "name": "oracle-mobile-api-version",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            },
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TalentPools"
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/UnauthorizedError"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFoundError"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "Jobs": {
+        "type": "object",
+        "required": [
+          "items"
+        ],
+        "properties": {
+          "items": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Job"
+            }
+          }
+        }
+      },
+      "Job": {
+        "type": "object",
+        "required": [
+          "items"
+        ],
+        "properties": {
+          "JobId": {
+            "type": "integer",
+            "example": 300000186087698
+          },
+          "JobCode": {
+            "type": "string",
+            "example": "MIT432"
+          },
+          "JobFamilyId": {
+            "type": "integer",
+            "example": 300000020411190
+          },
+          "ActiveStatus": {
+            "type": "string",
+            "example": "A"
+          },
+          "FullPartTime": {
+            "type": "string",
+            "example": "FULL_TIME"
+          },
+          "JobFunctionCode": {
+            "type": "string",
+            "example": "LSI107"
+          },
+          "ManagerLevel": {
+            "type": "string",
+            "example": null
+          },
+          "MedicalCheckupRequired": {
+            "type": "string",
+            "example": "N"
+          },
+          "RegularTemporary": {
+            "type": "string",
+            "example": "R"
+          },
+          "SetId": {
+            "type": "integer",
+            "example": 0
+          },
+          "EffectiveStartDate": {
+            "type": "string",
+            "format": "date",
+            "example": "2016-01-01"
+          },
+          "EffectiveEndDate": {
+            "type": "string",
+            "format": "date",
+            "example": "4712-12-31"
+          },
+          "Name": {
+            "type": "string",
+            "example": "LSIC365 - L&S Admin. & Support Officer"
+          },
+          "ApprovalAuthority": {
+            "type": "string",
+            "example": null
+          },
+          "GradeLadderId": {
+            "type": "string",
+            "example": null
+          },
+          "CreationDate": {
+            "type": "string",
+            "format": "date-time",
+            "example": "AXA FRANCE"
+          },
+          "LastUpdateDate": {
+            "type": "string",
+            "format": "date-time",
+            "example": "AXA FRANCE"
+          }
+        }
+      },
+      "TalentPools": {
+        "type": "object",
+        "properties": {
+          "PoolId": {
+            "type": "object",
+            "properties": {
+              "Pool": {
+                "type": "object",
+                "properties": {
+                  "POOL_ID": {
+                    "type": "integer",
+                    "example": 300000627184712
+                  },
+                  "POOL_TYPE_CODE": {
+                    "type": "string",
+                    "example": "TALENT"
+                  },
+                  "STATUS": {
+                    "type": "string",
+                    "example": "A"
+                  },
+                  "CREATED_BY": {
+                    "type": "string",
+                    "example": "STEPHANE.ROBY@AXA.COM"
+                  },
+                  "CREATION_DATE": {
+                    "type": "string",
+                    "format": "date-time",
+                    "example": "2019-02-04T10:52:10.000+00:00"
+                  },
+                  "POOL_NAME": {
+                    "type": "string",
+                    "example": "Global Leadership Network"
+                  },
+                  "LANGUAGE": {
+                    "type": "string",
+                    "example": "US"
+                  },
+                  "LAST_UPDATE_DATE": {
+                    "type": "string",
+                    "format": "date-time",
+                    "example": "2019-02-04T11:10:02.527+00:00"
+                  },
+                  "MEMBERS_COUNT": {
+                    "type": "integer",
+                    "example": 6
+                  },
+                  "GOT_MEMBERS_ON": {
+                    "type": "string",
+                    "format": "date-time",
+                    "example": "2019-02-18T13:23:29.226Z"
+                  },
+                  "MEMBERS": {
+                    "type": "array",
+                    "items": {
+                      "$ref": "#/components/schemas/Members"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "Members": {
+        "type": "object",
+        "properties": {
+          "POOL_ID": {
+            "type": "integer",
+            "example": 300000627184712
+          },
+          "POOL_MEMBER_ID": {
+            "type": "integer",
+            "example": 100000010092689
+          },
+          "MEMBER_ID": {
+            "type": "integer",
+            "example": 100000010092689
+          },
+          "LAST_NAME": {
+            "type": "string",
+            "example": "ANDRE"
+          },
+          "FIRST_NAME": {
+            "type": "string",
+            "example": "MATTHIEU"
+          },
+          "GENDER": {
+            "type": "string",
+            "example": "M"
+          },
+          "EMAIL": {
+            "type": "string",
+            "example": "matthieu.andre@axa.com"
+          },
+          "PHONE": {
+            "type": "string",
+            "example": "+33000000000"
+          },
+          "ASSIGNMENT_NAME": {
+            "type": "string",
+            "example": "Directeur de la ligne de metier Life and Savings"
+          },
+          "JOB_NAME": {
+            "type": "string",
+            "example": "LSIF384 - L&amp;S Head of Inforce"
+          },
+          "JOB_FAMILY": {
+            "type": "string",
+            "example": "LSI Life &amp; Savings Insurance"
+          },
+          "DEPARTMENT": {
+            "type": "string",
+            "example": "AXAGIE - 148892 - European Markets"
+          },
+          "BUSINESS_UNIT": {
+            "type": "string",
+            "example": "GIE AXA"
+          },
+          "COUNTRY": {
+            "type": "string",
+            "example": "France"
+          },
+          "LOCATION_NAME": {
+            "type": "string",
+            "example": "PARIS - 25 MATIGNON"
+          },
+          "RATING": {
+            "type": "string",
+            "example": "Medium"
+          },
+          "EMPLOYEE_CATEGORY": {
+            "type": "string",
+            "example": "Former Value - Executives"
+          },
+          "RISK_LOST": {
+            "type": "string",
+            "example": "Medium"
+          },
+          "IMPACT_LOST": {
+            "type": "string",
+            "example": "Medium"
+          },
+          "TENURE_AT_AXA": {
+            "type": "integer",
+            "example": 20
+          },
+          "PEOPLE_SEGMENT": {
+            "type": "string",
+            "example": "Mission Critical"
+          },
+          "SUCCESSORS": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "example": "MATTHIEU ANDRE"
+            }
+          },
+          "MANAGER_NAME": {
+            "type": "string",
+            "example": "Antimo PERRETTA"
+          },
+          "COUNTRY_CODE": {
+            "type": "string",
+            "example": "FR"
+          },
+          "CITY": {
+            "type": "string",
+            "example": "PARIS"
+          },
+          "GEOGRAPHY": {
+            "type": "string",
+            "example": "GIE AXA"
+          },
+          "IMAGE": {
+            "type": "string",
+            "example": "data:image/png;base64,/XXXXXXXXXXXXXXXXXXXXXXXXXXXXX"
+          },
+          "LANGUAGES": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "example": [
+              "English, Advanced",
+              "French, Native",
+              "German, Advanced",
+              "Spanish, Fluent"
+            ]
+          }
+        }
+      }
+    },
+    "securitySchemes": {
+      "bearerAuth": {
+        "type": "http",
+        "scheme": "bearer",
+        "bearerFormat": "JWT"
+      }
+    },
+    "responses": {
+      "UnauthorizedError": {
+        "description": "Unauthorized"
+      },
+      "NotFoundError": {
+        "description": "Not Found"
+      }
+    }
+  },
+  "security": [
+    {
+      "bearerAuth": []
+    }
+  ]
+}
