@@ -11,51 +11,6 @@
     }
   ],
   "paths": {
-    "/jobs": {
-      "get": {
-        "tags": [
-          "jobs"
-        ],
-        "summary": "Return a list of jobs",
-        "operationId": "getJobs",
-        "parameters": [
-          {
-            "name": "oracle-mobile-execute-etag",
-            "in": "header",
-            "schema": {
-              "type": "integer"
-            },
-            "required": false
-          },
-          {
-            "name": "oracle-mobile-api-version",
-            "in": "header",
-            "schema": {
-              "type": "string"
-            },
-            "required": false
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Jobs"
-                }
-              }
-            }
-          },
-          "401": {
-            "$ref": "#/components/responses/UnauthorizedError"
-          },
-          "404": {
-            "$ref": "#/components/responses/NotFoundError"
-          }
-        }
-      }
-    },
     "/talentpools/talentpoolswithmembers": {
       "get": {
         "tags": [
